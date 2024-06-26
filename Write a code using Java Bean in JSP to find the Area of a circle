@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<form action="CircleBean.jsp">
+<B>Enter a value for radius:</B>
+<input type=text name="data" size=10 value="">
+<input type=submit value="Submit">
+</form>
+</body>
+</html>
+
+
+//CircleClass.java
+
+package rbean;
+public class CircleClass {
+double radius;
+double area;
+public void setRadius(double r) {
+radius = r;
+}
+public double getRadius(){
+return radius;
+}
+public double getArea(){
+return 3.14*radius*radius;
+}
+}
+
+//CircleBean.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+<head>
+<title>JSP Page</title>
+</head>
+
+<body>
+<%!
+     String value;
+     double result;
+%>
+
+<%
+     value  = request.getParameter("data");
+     result = Double.parseDouble(value);
+%>
+
+<jsp:useBean id="circle1" class="rbean.CircleClass" scope="page" />
+
+<jsp:setProperty name="circle1" property="radius" value="<%= result %>" />       
+
+<b>RADIUS: </b> <jsp:getProperty name="circle1" property="radius" />
+<br><br>
+<b>AREA </b> <jsp:getProperty name="circle1" property="area" />
+</body>
+</html>
+
+
+//JSP_Project –Mysql_jdbc.jsp 
